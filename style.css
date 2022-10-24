@@ -1,0 +1,213 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope&family=Nunito:wght@300&display=swap');;
+@import url('https://fontawesome.com');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+:root{
+
+/* ### Neutral */
+
+
+--DarkBlueDarkModeElements: 209, 23%, 22%;
+--VeryDarkBlueDarkModeBackground: 207, 26%, 17%;
+--VeryDarkBlueLightModeText:200, 15%, 8%;
+--DarkGrayLightModeInput: 0, 0%, 52%;
+--VeryLightGrayLightModeBackground:0, 0%, 98%;
+--WhiteDarkModeTextLight: 0, 0%, 100%;
+
+/* ## Typography */
+
+/* ### Body Copy */
+
+--HomepageItems: 14px;
+--DetailPage: 16px ;
+
+/* ### Fonts */
+
+--Family:Nunito ;
+
+--Weights300 :300;
+--Weights600: 600;
+--Weights800:800;
+
+/* ## Icons */
+
+/* For the icons, you can use a font icon library. Don't worry if the icons that you choose don't look exactly like they do on the design.
+
+Some suggestions can be found below:
+
+- [Font Awesome](https://fontawesome.com)
+- [IcoMoon](https://icomoon.io)
+- [Ionicons](https://ionicons.com) */
+}
+
+html{
+    font-family: var(--Family);
+    font-size: 0.625rem;
+}
+
+body{
+    background-color: hsl(var(--VeryLightGrayLightModeBackground));
+    font-size: 1.4rem;
+
+}
+
+
+
+/* GENERAL STYLING */
+.topSection,header .center_div{
+    display: flex;
+        justify-content: space-between;
+        align-items: center;
+        align-content: center;
+}
+
+/* center div */
+.center_div {
+    width: 90vw;
+    /* border: 1px solid red; */
+    margin: 0 auto;
+}
+
+/* white background color */
+.continents,.search
+,.country,.filte_Label,header{
+background-color: hsl(var(--WhiteDarkModeTextLight));
+}
+
+/* margin bottom */
+.topSection,header{
+margin-bottom: 4rem;
+
+}
+
+.filter_Container,
+.continents,
+header,
+.countries,.search{
+
+    box-shadow: 3px 1px 8px hsl(var(--DarkGrayLightModeInput), .2);
+
+}
+
+/* cursor pointer */
+.filter_Container,
+.continents,
+.mode,
+.country {
+
+   cursor: pointer;
+
+}
+/* -_______________________________________________________________________________________________________________ */
+/* ======================================================================================================= */
+
+/*   HEADER */
+
+/* mode */
+
+.modeChange{
+    background-color: hsl(var(--VeryDarkBlueDarkModeBackground));
+     color: hsl(var(--DarkGrayLightModeInput), .6);
+        box-shadow: 3px 1px 8px hsl(var(--DarkGrayLightModeInput));
+}
+
+.elementBgChange{
+background-color: hsl(var(--DarkBlueDarkModeElements));
+color: hsl(var(--WhiteDarkModeTextLight));
+box-shadow: none;
+
+}
+header .center_div{
+     padding: 1.5rem 0;
+}
+
+
+/*   FILTER  */
+
+
+.filte_Label,.continents,.search, .country{
+border-radius: 1rem;
+}
+
+.filte_Label,
+.continents,
+.search{
+    width: 14vw;
+    padding: 0 2rem;
+}
+
+.filte_Label,.search{
+    display: flex;
+    align-items: center;
+    height: 5.5rem;
+border:none;
+outline:none
+}
+
+.continents{
+    list-style: none;
+    position: absolute;
+    margin: .5rem 0;
+    z-index: 100;
+
+}
+
+.continents li {
+ margin: 1.5rem 0;
+}
+
+/* SEARCH  */
+.search::placeholder,
+.search{
+    width: 35vw;
+    color: hsl(var(--DarkGrayLightModeInput), .6);
+}
+
+
+/* LIST OF COUNTRY */
+
+.List_of_country{
+    display: grid;
+
+  gap: 3rem;
+    grid-template-columns: repeat(4,1fr);
+  
+   
+}
+
+.flag{
+    width:100%;
+   /* height: auto; */
+   border-radius: 1rem 1rem 0 0;
+}
+/* country flag */
+/* 
+.countries{
+    margin-bottom: 3rem;
+ 
+} */
+.country{
+    border-radius: 2rem;
+}
+/* country's deatials */
+
+.country_details{
+    padding: 1rem 2rem;
+}
+
+.country .img,.country h2{
+    margin-bottom: 3rem;
+}
+
+.country ul {
+    list-style: none;
+}
+.country ul li{
+    margin-bottom: 1rem;
+}
+
