@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Manrope&family=Nunito:wght@300&display=swap');;
-@import url('https://fontawesome.com');
 *{
     margin: 0;
     padding: 0;
@@ -74,7 +73,7 @@ body{
 }
 
 /* white background color */
-.continents,.search
+.continents,.searchDiv
 ,.country,.filte_Label,header{
 background-color: hsl(var(--WhiteDarkModeTextLight));
 }
@@ -88,7 +87,7 @@ margin-bottom: 4rem;
 .filter_Container,
 .continents,
 header,
-.countries,.search{
+.countries,.searchdiv{
 
     box-shadow: 3px 1px 8px hsl(var(--DarkGrayLightModeInput), .2);
 
@@ -113,7 +112,7 @@ header,
 .modeChange{
     background-color: hsl(var(--VeryDarkBlueDarkModeBackground));
      color: hsl(var(--DarkGrayLightModeInput), .6);
-        box-shadow: 3px 1px 8px hsl(var(--DarkGrayLightModeInput));
+        /* box-shadow: 3px 1px 8px hsl(var(--DarkGrayLightModeInput)); */
 }
 
 .elementBgChange{
@@ -122,26 +121,25 @@ color: hsl(var(--WhiteDarkModeTextLight));
 box-shadow: none;
 
 }
-header .center_div{
-     padding: 1.5rem 0;
-}
+/* header .center_div{
+     padding: rem 0;
+} */
 
 
 /*   FILTER  */
 
 
-.filte_Label,.continents,.search, .country{
+.filte_Label,.continents,.searchDiv, .country{
 border-radius: 1rem;
 }
 
 .filte_Label,
-.continents,
 .search{
     width: 14vw;
     padding: 0 2rem;
 }
 
-.filte_Label,.search{
+.filte_Label,.searchDiv{
     display: flex;
     align-items: center;
     height: 5.5rem;
@@ -150,30 +148,70 @@ outline:none
 }
 
 .continents{
+        width: 17.2vw;
     list-style: none;
     position: absolute;
     margin: .5rem 0;
     z-index: 100;
+    padding-left: 0;
 
 }
 
 .continents li {
- margin: 1.5rem 0;
+ margin: .2rem 0;
+
+ padding: 1rem 2rem;
+ margin-left: 0;
+}
+
+.mode {
+ display:flex;
+}
+
+.mode span{
+   border:1px solid;
+   width: 3rem;
+    
 }
 
 /* SEARCH  */
 .search::placeholder,
-.search{
+.searchDiv{
     width: 35vw;
-    color: hsl(var(--DarkGrayLightModeInput), .6);
+  
 }
 
+.search::placeholder,
+.searchDiv,
+.fa-sharp{
+  color: hsl(var(--DarkGrayLightModeInput), .6);
+}
+
+.search::placeholder{
+    margin-left: 5rem;
+}
+
+.searchDiv{
+    padding-left: 2rem;
+}
+
+.search{
+    width: 90%;
+    margin-left: 1rem;
+    padding: 1.4rem;
+    border: none;
+        outline: none;
+        background-color: transparent;
+}
+
+.fa-sharp{
+    display: block;
+}
 
 /* LIST OF COUNTRY */
 
 .List_of_country{
     display: grid;
-
   gap: 3rem;
     grid-template-columns: repeat(4,1fr);
   
@@ -185,12 +223,7 @@ outline:none
    /* height: auto; */
    border-radius: 1rem 1rem 0 0;
 }
-/* country flag */
-/* 
-.countries{
-    margin-bottom: 3rem;
- 
-} */
+
 .country{
     border-radius: 2rem;
 }
