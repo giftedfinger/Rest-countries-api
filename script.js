@@ -1,3 +1,5 @@
+// import Modules from './modules'
+
 const print = console.log.bind()
 
 // const List_of_country = document.querySelector('.List_of_country')
@@ -31,6 +33,9 @@ const DOMController =( ()=>{
     let modeIcon = document.querySelector('.modeIcon');
     let search_icon = document.querySelector('.search_icon');
     let search_input= document.querySelector('.search');
+    let Modal = document.querySelector('.modal');
+    let modalbtn = document.querySelector('.close');
+
 
 // <i class="fa-sharp fa-solid fa-moon"></i>
 
@@ -43,6 +48,8 @@ const DOMController =( ()=>{
         modeIcon: modeIcon,
         search_icon: search_icon,
         input: search_input,
+        Modal:Modal,
+        modalbtn:modalbtn
 
         }
 
@@ -59,28 +66,35 @@ const controller = ((dom) => {
 
 let backgroundMode=()=>{
     dom.modes.addEventListener('click', () => {
-
-        document.body.classList.toggle('modeChange');
+       
         // print(mod.textContent)
         if (dom.modes.textContent == 'Light Mode') {
-            dom.modes.textContent = '&#9790; Dark Mode'
+            dom.modes.textContent = '&#9790'
             dom.modeIcon.innerHTML = '&#9790';
-            dom.c
+           
+            
         } else {
             dom.modes.textContent = 'Light Mode'
             dom.modeIcon.textContent = '&#9790;'  
         }
+   
+    
+        let domElements = [dom.header, dom.filter, dom.continent, dom.search]
+        // dom.filter.style.bacgroumd ='red'
+        domElements.forEach(dom=>dom.classList.toggle('elementBgChange'))
 
- 
-        dom.filter.style.bacgroumd ='red'
-        dom.header.classList.toggle('elementBgChange');
-        dom.filter.classList.toggle('elementBgChange');
-        dom.continent.classList.toggle('elementBgChange');
-        dom.search.classList.toggle('elementBgChange')
+        document.body.classList.toggle('modeChange');
+        dom.Modal.classList.toggle('modeChange')
+        // document.querySelector('.modalbtn').classList.toggle('elementBgChange')
+
+        document.querySelectorAll('.bottom__item').forEach(el =>{
+             el.classList.toggle('elementBgChange');
+            el.style.boxShadow ='4px 10px 9px hsl(var(--VeryDarkBlueLightModeText),.2);'
+        })
 
         // Ui.filter.style.border.classList.toggle('elementBgChange');
-        dom.search.style.outline ='1px solid hsl(var(--VeryDarkBlueDarkModeBackground))';
-       
+        dom.search.classList.toggle('searchBorderMode');
+        dom.search.classList.toggle('searchMode');
 
     })
 };
@@ -90,17 +104,21 @@ let backgroundMode=()=>{
 return{
     BngMode: backgroundMode(),
         countryDom: (country) => {
-            html = `<div class="countries">
-            <img class='flag' src =${country.flags.svg} />
-            <div class="country_details" >
-                <h2>${country.name.common}</h2>
-                <ul>
-                    <li><span>Population: </Span>${country.population}</li>
-                   <li><span>Region: </Span>${country.region}</li>
-                    <li><span>Capital: </span>${country.name.common}</li>
+            html = `<a class="countries">
+
+            <img class='flag' src =${country.flags.svg} alt=${country.name.common} flag />
+
+            <div class= 'country_details' >
+                <h2 class='countryName'>${country.name.common} </h2>
+
+                <ul class='country_detailsList'>
+                    <li><span> Population:  </Span> ${country.population} </li>
+                   <li><span >Region:  </Span> ${country.region} </li>
+                    <li><span> Capital:  </span> ${country.name.common} </li>
                 </ul>
+
             </div>
-        </div>`
+        </>`
 
             return html
         },
@@ -108,17 +126,18 @@ return{
 
     }
 
-
-
 })(DOMController)
 
 
 
 
 const ApiConsumption = ((ApisData,dom,Ctrl)=>{
+    let countries,continentDom,data
+
+
     const List_of_country = document.querySelector('.List_of_country')
-let data = ApisData;
- let continentDom = dom.continent
+ data = ApisData;
+ continentDom = dom.continent
     let countryDiv = Ctrl.countryDom
 
 //    Display All the Countries
@@ -129,13 +148,14 @@ data.then(
         const country = data.map(countryDiv )
   
     List_of_country.innerHTML = country;
-return country;
+
+return {country};
 })
 
 .then(el=>{
 
     const modes = document.querySelector('.mode');
-    let countries = document.querySelectorAll('.countries');
+   countries = document.querySelectorAll('.countries');
 
 
     modes.addEventListener('click', () => {
@@ -144,8 +164,122 @@ return country;
         })
 
     })
+    return countries, el
 
-}).catch(err=>{
+}).then(el=>{
+//Modal........................
+ 
+
+   
+
+        countries.forEach(element=>{
+
+           element.addEventListener('click', e=>{
+               let country = e.target.closest('.countries')
+
+            //    guard clause
+            if(!country) return;
+             
+
+               data.then(
+                data=>{ data.map(cntry=>{   
+                    print(cntry)    
+        //   print(cntry)
+               html = `<div>
+              
+<button class='modalbtn close'>go back</button>
+            <div  class="countries ">
+               <div class='imgContainer'>
+            <img class='flag' src =${country.children[0].currentSrc} />
+            </div>
+
+
+            <div>
+
+                <h2>${country.children[1].children[0].outerText}</h2>
+
+            <div class="countryFull--detail" >
+                <ul>
+                <li><span>Native Name: </Span>${country.children[1].children[0].outerText}</li>
+                    <li><span>Population: </Span>${cntry.population}</li>
+                   <li><span>Region: </Span>${cntry.region}</li>
+                    <li><span>Capital: </span>${country.children[1].children[0].outerText}</li>
+                    <li><span>Subregion: </span>${cntry.subregion}</li>
+                </ul>
+
+                  <ul>
+                <li><span>Top Level Domain: </Span>${country.children[1].children[0].outerText}</li>
+                    <li><span>Currency: </Span>${cntry.population}</li>
+                   <li><span>Language: </Span>${cntry.region}</li>
+                    
+                </ul>
+            </div>
+
+               <ul class='bottomDetails'>
+                <li>Border Countries :</li>
+                            <ul class='bottomDetails--List'>
+                            <li class='bottom__item'>${country.children[1].children[0].outerText}</li>
+                                <li class='bottom__item'>${cntry.population}</li>
+                            <li class='bottom__item'>${cntry.region}</li>
+                                </ul>
+                                
+                </ul>
+        </div>
+            </div>
+        </div>`
+               
+        // print(html)
+               dom.Modal.innerHTML = html;
+              dom.Modal.style.visibility='visible'
+                   })
+
+                       print(document.querySelector('.modalbtn'))
+                        // close modal
+
+                     
+           document.querySelector('.modalbtn').addEventListener('click',()=> console.log('yes'))
+
+
+                   })
+               
+
+           })
+        })
+       
+
+
+
+        // Get the button that opens the modal
+        // var btn = document.getElementById("myBtn");
+
+        // Get the <span> element that closes the modal
+        // var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks the button, open the modal 
+        //     countries.forEach(country=>{
+        //         country.addEventListener('click', e=>{
+        //         modal.style.display = "block";
+
+        //     })
+        // }) 
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+   
+
+}).
+
+catch(err=>{
 print(err)
 }).finally(print('Loading...'))
 }
@@ -175,6 +309,8 @@ let Continent =continent.map(countryDiv)
 })
 
     })
+
+    
 }
 
 // Search for any Country 
@@ -195,7 +331,11 @@ data.then(
         Country =>{ 
             try {
                 
+                        
           country = Country.filter((cntry,i) => cntry.name.common === searchInput.value)
+          if(country === 'undefined'){
+          print('not found')
+          }
                 let Continent = country.map(countryDiv)
                 List_of_country.innerHTML = Continent;
       
@@ -212,18 +352,58 @@ data.then(
     }
 }
  )
+
+// Key presss
+    document.addEventListener('keypress', ()=> {
+        if (event.keyCode === 13 || event.which === 13) {
+          
+            if (searchInput.value !== '') {
+
+
+                data.then(
+
+                    Country => {
+                        try {
+
+
+                            country = Country.filter((cntry, i) => cntry.name.common === searchInput.value)
+                            if (country === 'undefined') {
+                                print('not found')
+                            }
+                            let Continent = country.map(countryDiv)
+                            List_of_country.innerHTML = Continent;
+
+
+                            print(searchInput.value)
+
+
+                        } catch (error) {
+                            print(error)
+
+                        }
+                    }
+                )
+            }
+         
+        }
+    }
+    )
   
 }
+
+
+
+
     
 
-
-
-AllCountries()
-
+    // countryModal()
 // continent
 continent()
 // print(datas)
     searchCountry()
+    // Modules()
+    AllCountries()
+    
 
 })(Apis, DOMController, controller)
 

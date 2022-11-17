@@ -1,0 +1,537 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope&family=Nunito:wght@300&display=swap');;
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+:root{
+
+/* ### Neutral */
+
+
+--DarkBlueDarkModeElements: 209, 23%, 22%;
+--VeryDarkBlueDarkModeBackground: 207, 26%, 17%;
+--VeryDarkBlueLightModeText:200, 15%, 8%;
+--DarkGrayLightModeInput: 0, 0%, 52%;
+--VeryLightGrayLightModeBackground:0, 0%, 98%;
+--WhiteDarkModeTextLight: 0, 0%, 100%;
+
+/* ## Typography */
+
+/* ### Body Copy */
+
+--HomepageItems: 14px;
+--DetailPage: 16px ;
+
+/* ### Fonts */
+
+--Family:Nunito ;
+
+--Weights300 :300;
+--Weights600: 600;
+--Weights800:800;
+
+/* ## Icons */
+
+/* For the icons, you can use a font icon library. Don't worry if the icons that you choose don't look exactly like they do on the design.
+
+Some suggestions can be found below:
+
+- [Font Awesome](https://fontawesome.com)
+- [IcoMoon](https://icomoon.io)
+- [Ionicons](https://ionicons.com) */
+}
+
+html{
+    font-family: var(--Family);
+    font-size: 0.625rem;
+}
+
+body{
+    background-color: hsl(var(--VeryLightGrayLightModeBackground));
+    font-size: 1.4rem;
+    margin: 0;
+
+}
+
+
+
+
+
+/* ////////////////////////////////////////////////////////////////////////////////////// */
+/* GENERAL STYLING
+/* ////////////////////////////////////////////////////////////////////////////////////// */
+
+/*   HEADER */
+.topSection,
+header .center_div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+}
+
+
+
+.center_div {
+    width: 90vw;
+    /* border: 1px solid red; */
+    margin: 0 auto;
+}
+
+/* white background color */
+.continents,.searchDiv
+,.country,.filte_Label,
+header,.modal, .close{
+background-color: hsl(var(--WhiteDarkModeTextLight));
+}
+
+/* margin bottom */
+.topSection,header{
+margin-bottom: 4rem;
+
+}
+
+/* ////////////////////////////////////////////////////////////////////////////////////// */
+/* MODE 
+/* ////////////////////////////////////////////////////////////////////////////////////// */
+.filter_Container,
+.continents,
+header,
+.countries,.searchdiv, .close,
+.bottomDetails--List li {
+    box-shadow: 3px 2px 8px hsl(var(--DarkGrayLightModeInput), .2);
+}
+
+.elementBgChange {
+    background-color: hsl(var(--DarkBlueDarkModeElements));
+    color: hsl(var(--WhiteDarkModeTextLight));
+    box-shadow: none;
+    box-shadow: 4px 10px 9px hsl(var(--VeryDarkBlueLightModeText), .2); 
+}
+
+.modeChange {
+    background-color: hsl(var(--VeryDarkBlueDarkModeBackground));
+    color: hsl(var(--WhiteDarkModeTextLight));
+    /* box-shadow: 3px 1px 8px hsl(var(--DarkGrayLightModeInput)); */
+}
+
+/* cursor pointer */
+.filter_Container,
+.continents,
+.mode,
+.country {
+
+   cursor: pointer;
+
+}
+/* -_______________________________________________________________________________________________________________ */
+/* ======================================================================================================= */
+
+
+
+/* ////////////////////////////////////////////////////////////////////////////////////// */
+/*   HEADER */
+/* ////////////////////////////////////////////////////////////////////////////////////// */
+
+header { 
+    position: fixed;
+margin-bottom: 10rem;
+ width: 100%;
+z-index: 100;
+
+}
+
+
+
+.country_detailsList span{
+    font-weight: 800;
+}
+
+
+
+.searchBorderMode{
+    border:'1px solid hsl(var(--VeryDarkBlueDarkModeBackground))';
+    color: hsl(var(--WhiteDarkModeTextLight))
+}
+
+
+
+/* ////////////////////////////////////////////////////////////////////////////////////// */
+/* MAIN SECTION
+/* ////////////////////////////////////////////////////////////////////////////////////// */
+#mainSection{
+    position: relative;
+    top: 14rem;
+    margin-top: 0rem;
+}
+
+
+
+/* ////////////////////////////////////////////////////////////////////////////////////// */
+/* FILTER
+/* ////////////////////////////////////////////////////////////////////////////////////// */
+
+
+.filte_Label,.continents,.searchDiv, .country{
+border-radius: 1rem;
+}
+
+.filte_Label,
+.search{
+    width: 14vw;
+    padding: 0 2rem;
+}
+
+.filte_Label,.searchDiv{
+    display: flex;
+    align-items: center;
+    height: 5.5rem;
+border:none;
+outline:none
+}
+
+ul{
+    list-style: none;
+ padding-inline-start: 0px;
+}
+
+/* ////////////////////////////////////////////////////////////////////////////////////// */
+/* continent option
+/* ////////////////////////////////////////////////////////////////////////////////////// */
+
+
+.continents{
+        width: 17.2vw;
+        display: none;
+    position: absolute;
+    margin: .5rem 0;
+    z-index: 1;
+    padding-left: 0;
+    height: 0vh;
+    transition: all 1s;
+
+}
+
+.continents li {
+    position: relative ;
+ margin: .2rem 0;  
+ padding: 1rem 2rem;
+ margin-left: 0;    
+ 
+}
+
+.continentsOpen{
+    height: 30vh;
+    display: block;
+    /* display:block; */
+    /* transition: all 1s; */
+  
+}
+
+/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| */
+.mode {
+ display:flex;
+}
+
+.mode span{
+   border:1px solid;
+   width: 3rem;
+    
+}
+
+/* ////////////////////////////////////////////////////////////////////////////////////// */
+/* SEARCH INPUT
+/* ////////////////////////////////////////////////////////////////////////////////////// */
+.search::placeholder,
+.searchDiv{
+    width: 35vw;
+  
+}
+
+.search::placeholder,
+.searchDiv,
+.fa-sharp{
+  color: hsl(var(--DarkGrayLightModeInput), .6);
+}
+
+.search::placeholder{
+    margin-left: 5rem;
+}
+
+.searchDiv{
+    padding-left: 2rem;
+}
+
+.search{
+    width: 90%;
+    margin-left: 1rem;
+    padding: 1.4rem;
+    border: none;
+        outline: none;
+        background-color: transparent;
+}
+
+.fa-sharp{
+    display: block;
+}
+
+/* ////////////////////////////////////////////////////////////////////////////////////// */
+/* LIST OF COUNTRIES
+/* ////////////////////////////////////////////////////////////////////////////////////// */
+
+.List_of_country{
+    display: grid;
+  gap: 3rem;
+    grid-template-columns: repeat(4,1fr);
+   
+}
+
+.flag{
+    width:100%;
+   border-radius: 1rem 1rem 0 0;
+}
+
+
+/* ////////////////////////////////////////////////////////////////////////////////////// */
+/* COUNTRIES DETAILS
+/* ////////////////////////////////////////////////////////////////////////////////////// */
+
+
+.country_details{
+    position: relative;
+    top: 5%;
+    padding: .2rem 0rem;
+    /* border: 1px solid; */
+    text-align: left;
+    
+}
+.countries{
+    height: vh;
+}
+
+.country .img,.country h2{
+    margin-bottom: 3rem;
+   
+}
+
+.countryName,.country_detailsList{
+    padding-left: 3rem;
+ 
+}
+.country_detailsList li{
+    margin-bottom: 2rem;
+   
+}
+
+.country_detailsList li span{
+    font-weight: var(--Weights800);
+    font-size: 1.6rem;
+}
+
+
+
+/* ////////////////////////////////////////////////////////////////////////////////////// */
+/* MODAL */
+/* ////////////////////////////////////////////////////////////////////////////////////// */
+
+.modal {
+     display:flex ;
+    /* flex-direction: row;  */
+    justify-content: center;
+
+    visibility: hidden;
+    /* Hidden by default */
+    position: fixed;
+    margin-top: 5%;
+    /* Stay in place */
+    /* background-color: #d95b5b; */
+    z-index: 100;
+    /* Sit on top */
+    /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height:92%;
+    /* Full height */
+    overflow: hidden;
+    /* Enable scroll if needed */
+    /* background-color: rgb(0, 0, 0); */
+    /* Fallback color */
+   
+    /* Black w/ opacity */
+}
+
+.modal .center_div{
+    /* background-color: red; */
+    flex: unset;
+}
+
+
+.modal .countries{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap : 14em;
+ box-shadow: unset;
+  align-items: center;
+    width: 100vw;
+    height: 70vh;
+    /* background-color: aquamarine; */
+    position: absolute;
+    right: 50%;
+    left: 50%;
+    transform: translate(-50%,10%);
+ 
+
+}
+
+.modal .countries .imgContainer{
+    width: 33vw;
+border-radius: 0 ;
+
+}
+
+ .imgCOntaine .flag {
+    height: 60%;
+    width: 100%;
+    border-radius:unset;
+}
+
+
+/*\\\ Full details of countries */
+
+.countryFull--detail,.bottomDetails,
+.bottomDetails--List{
+    display: flex;
+    gap:2rem;
+   
+}
+
+.countryFull--detail{
+    gap: 5rem;
+}
+
+.bottomDetails, .bottomDetails--List{
+ 
+    align-items: center;
+    justify-content: center;
+   
+}
+
+
+
+.bottomDetails--List li,.close{
+    width: 6vw;
+    padding: 8px 10px;
+    margin-left: 2rem;
+    text-align: center;
+
+}
+
+/* The Close Button */
+.close {
+    width: 7vw;
+    position: absolute;
+    left: 5%;
+    top:10%;
+   border: 1px solid transparent;
+  
+}
+
+.close:hover,
+.close:focus {
+
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* </style></head><body><h2>Modal Example</h2>< !-- Trigger/Open The Modal --><button id="myBtn">Open Modal</button>< !-- The Modal --><div id="myModal" class="modal">< !-- Modal content --><div class="modal-content"><span class="close">&times;
+</span><p>Some text in the Modal..</p></div></div> */
+
+ /* @media screen and (min-width:1024px) and (max-width:1440px) {
+   
+ } */
+
+
+ @media screen and (min-width:681px) and (max-width:1024px) {
+     
+     .List_of_country{
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        margin: 0 auto;
+     }
+
+   .topSection{
+    display: block;
+   }
+
+   header {
+    
+       margin-bottom: 5rem;
+    
+   }
+   .searchDiv {
+       width: 90%;
+       margin: 0 auto;
+   }
+   .filte_Label {
+       width: 80%;
+   }
+   .continents,
+   .filter_Container {
+       width: 60%;
+   }
+ }
+
+ @media screen and (max-device-width:680px) and (orientation:portrait) {
+
+    header {
+    
+            margin-bottom: 5rem;
+    
+        }
+
+           .List_of_country {
+               display: block;
+               
+               width: 60vw;
+               margin: 0 auto;
+           }
+
+           
+                   .topSection {
+                       display: block;
+                   }
+
+                   .searchDiv{
+                    width: 90%;
+                    margin: 0 auto;
+                   }
+
+                   .continents,.filter_Container{
+                    width: 60%;
+                   }
+
+                   .filte_Label{
+                    width: 94%;
+                   }
+                   .country_details{
+                 
+                  
+                }
+
+                .countries{
+                    border: 3px solid rgb(104, 207, 64);
+                    width: 30vh;
+                }
+ }
+
+ /* @media screen and (max-device-width:320px) and (orientation:portrait) {
+     body {
+         background-color: blue;
+     }
+ } */
