@@ -56,9 +56,35 @@ body{
 
 }
 
+/* error */
+.Error_container{
+    display: flex;
+    /* background-color: red; */
+    justify-content: center;
+    align-items: center;
+    align-items: center;
+    gap: 20rem;
+    height: 80vh;
+    
+}
 
 
+.Error__text_div{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    /* border: 1px solid red; */
+    width: 30vw;
+    margin-right: 1rem;
+}
 
+
+.error_Text{
+    font-size: 3rem;
+    text-align: center;
+    line-height: 6rem;
+    font-family: var(--Weights800);
+}
 
 /* ////////////////////////////////////////////////////////////////////////////////////// */
 /* GENERAL STYLING
@@ -101,7 +127,7 @@ margin-bottom: 4rem;
 .continents,
 header,
 .countries,.searchdiv, .close,
-.bottomDetails--List li {
+.bottomDetails--List li,.img_Error{
     box-shadow: 3px 2px 8px hsl(var(--DarkGrayLightModeInput), .2);
 }
 
@@ -126,6 +152,42 @@ header,
 
    cursor: pointer;
 
+}
+
+
+/*  Buttons */
+.close,
+.error_btn {
+    width: 10vw;
+    padding: 1rem 0;
+    border: 1px solid transparent;
+
+}
+
+/* The Close Button */
+
+.error_btn {
+    position: relative;
+    left: 50%;
+    right: 50%;
+    transform: translate(-50%);
+    font-size: 1.8rem;
+    padding: .5rem 0;
+}
+
+.img_Error{
+    height: 40vh;
+    width: 30vw;
+    margin-top: 5rem;
+    background-color: transparent;
+
+    /* border: 1px solid red; */
+    
+}
+.img_Error_div p{
+    font-size: 5rem;
+    font-weight: var(--Weights800);
+    color:aqua
 }
 /* -_______________________________________________________________________________________________________________ */
 /* ======================================================================================================= */
@@ -154,7 +216,7 @@ z-index: 100;
 
 .searchBorderMode{
     border:'1px solid hsl(var(--VeryDarkBlueDarkModeBackground))';
-    color: hsl(var(--WhiteDarkModeTextLight))
+    color: hsl(var(--WhiteDarkModeTextLight))\\\\\\\\\\\\
 }
 
 
@@ -370,7 +432,21 @@ ul{
     flex: unset;
 }
 
-
+/* 
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 14em;
+        box-shadow: unset;
+        align-items: center;
+        width: 100vw;
+        height: 60vh;
+        background-color: aquamarine;
+        position: absolute;
+        right: 50%;
+        left: 50%;
+        transform: translate(-50%, -31%);
+         */
 .modal .countries{
   display: flex;
   justify-content: center;
@@ -379,13 +455,13 @@ ul{
  box-shadow: unset;
   align-items: center;
     width: 100vw;
-    height: 70vh;
+height: 60vh;
     /* background-color: aquamarine; */
     position: absolute;
     right: 50%;
     left: 50%;
-    transform: translate(-50%,10%);
- 
+    transform: translate(-50%, 34%);
+
 
 }
 
@@ -432,14 +508,12 @@ border-radius: 0 ;
 
 }
 
-/* The Close Button */
-.close {
-    width: 7vw;
-    position: absolute;
+
+.close{
+position: absolute;
     left: 5%;
-    top:10%;
-   border: 1px solid transparent;
-  
+    top: 10%;
+    width: 10vw;
 }
 
 .close:hover,
