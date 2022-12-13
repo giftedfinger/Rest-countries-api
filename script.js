@@ -191,25 +191,25 @@ searchInput = dom.input
 <button class='modalbtn close'>go back</button>
             <div  class="countries ">
                <div class='imgContainer'>
-            <img class='flag' src =${country.flags.svg} />
+            <img class='flag' src =${country[0].flags.svg} />
             </div>
 
             <div>
-                <h2>${country.name.common}</h2>
+                <h2>${country[0].name.common}</h2>
 
             <div class="countryFull--detail" >
                 <ul>
-                <li><span>Native Name: </Span>${country.name.common}</li>
-                    <li><span>Population: </Span>${country.population}</li>
-                   <li><span>Region: </Span>${country.region}</li>
-                    <li><span>Capital: </span>${country.capital}</li>
-                    <li><span>Subregion: </span>${country.subregion}</li>
+                <li><span>Native Name: </Span>${country[0].name.common}</li>
+                    <li><span>Population: </Span>${country[0].population}</li>
+                   <li><span>Region: </Span>${country[0].region}</li>
+                    <li><span>Capital: </span>${country[0].capital}</li>
+                    <li><span>Subregion: </span>${country[0].subregion}</li>
                 </ul>
 
                   <ul>
-                <li><span>region : </Span>${country.region}</li>
+                <li><span>region : </Span>${country[0].region}</li>
                     
-                   <li><span>Language: </Span>${country.language}</li>
+                   <li><span>Language: </Span>${country[0].language}</li>
                     
                 </ul>
             </div>
@@ -218,8 +218,8 @@ searchInput = dom.input
                 <li>Border Countries :</li>
                             <ul class='bottomDetails--List'>
                          
-                                <li class='bottom__item'>${country.population}</li>
-                            <li class='bottom__item'>${country.region}</li>
+                                <li class='bottom__item'>${country[0].population}</li>
+                            <li class='bottom__item'>${country[0].region}</li>
                                 </ul>           
                 </ul>
         </div>
@@ -267,66 +267,71 @@ return country;
 
 
 // /////////////////////////  MODAL    ////////////////////////////////////////////////........................
-
-
-
-
 .then(el=>{
 
-  
-  
- 
-        countries.forEach(element=>{
+  countries.forEach(element=>{
 
            element.addEventListener('click', e=>{
-               let country = e.target.closest('.countries')
+               let targeted_cntry = e.target.closest('.countries')
 
             //    guard clause
-            if(!country) return;
-
-               
+               if (!targeted_cntry) return;
                     
-               let countryname = country.children[1].children[0].textContent
+               let countryname = targeted_cntry.children[1].children[0].textContent
 
-            //    let Find_country =(el)=>{
-          
-            //     return el.name.common == countryname
-            //    }
 
-        //    print(countryname)
-            // COUNTRIES FULL  DETAILS DOM
+    const country =( async() => {
 
-            // let find = Find_country(el,countryname)
+        const res = await fetch(`https://restcountries.com/v3.1/name/${countryname}`)
+        const data = await res.json();
+return data
+    })()
 
-               data.then(
+    country.then(el=>{
+        print(el)
+        modal_dom(el)
+    })
 
-        
-                data=>{ data.map((cntry,i,arr)=>{    
-                    
-                    arr.forEach(cntry=>{
-                 if(cntry.name.common === countryname) {
-                     print(countryname)
-                     modal_dom(cntry);
-                   
-                 }else{
-                        
-                    //  print(cntry.name.common)
-                 }
-                })
-
-                   })
-
-                   })               
            })
         })
+})
+}
+// .then(el=>{
+ 
+//         countries.forEach(element=>{
+
+//            element.addEventListener('click', e=>{
+//                let country = e.target.closest('.countries')
+
+//             //    guard clause
+//             if(!country) return;
+                    
+//                let countryname = country.children[1].children[0].textContent
+
+
+//                data.then(
+
+        
+//                 data=>{ data.filter((cntry,i,arr)=>{    
+                    
+//                 let cnt = cntry.name.common === countryname
+                
+              
+
+//                    })
+
+//                    })  
+                             
+//            })
+//         })
        
 
-}).
+// }).
 
-catch(err=>{
-print(err)
-}).finally(print('Loading...'))
-}
+// catch(err=>{
+// print(err)
+// }).finally(print('Loading...'))
+
 
 
 
@@ -417,7 +422,7 @@ const SearchApis = (async () => {
                 countries => {
 
                     continent = countries.filter(el => el.region == continentName)
-                    //  print(continent)
+                     print(continent)
                     let Continent = continent.map(countryDiv)
                     List_of_country.innerHTML = Continent;
                  
