@@ -236,12 +236,68 @@ searchInput = dom.input
 
     }
 
+    const Asyc_MOdal = (cntry, search_Input) => {
+        print(cntry)
+        print(search_Input)
+
+       if(cntry === ''){
+
+           (async () => {
+            try {
+                let res = await fetch(`https://restcountries.com/v3.1/name/${search_Input}`)
+                const data = await res.json();
+                return data
+            } catch (error) {
+                
+            }
+               
+           })().then(el => {
+            if(el ==='') return;
+            //    print(el)
+               modal_dom(el)
+               let Continent = el.map(countryDiv)
+               List_of_country.innerHTML = Continent;
+
+              
+
+           })
+          
+    }else{
+          
+           (async () => {
+               try {
+                   let res = await fetch(`https://restcountries.com/v3.1/name/${cntry}`)
+                   const data = await res.json();
+                   return data
+               } catch (error) {
+                   print(error)
+               }
+
+           })().then(el => {
+            if(el == undefined) return;
+            //    print(el)
+               modal_dom(el)
+
+           })
+            }
+      
+        
+
+   
+
+
+    
+    };
+
+    
 
 function AllCountries(){
+
+
+
 data.then(
     data=>{
         const country = data.map(countryDiv)
-  
     List_of_country.innerHTML = country;
 
 return country;
@@ -267,6 +323,7 @@ return country;
 
 
 // /////////////////////////  MODAL    ////////////////////////////////////////////////........................
+
 .then(el=>{
 
   countries.forEach(element=>{
@@ -279,54 +336,12 @@ return country;
                     
                let countryname = targeted_cntry.children[1].children[0].textContent
 
-
-    const country =( async() => {
-
-        const res = await fetch(`https://restcountries.com/v3.1/name/${countryname}`)
-        const data = await res.json();
-return data
-    })()
-
-    country.then(el=>{
-        print(el)
-        modal_dom(el)
-    })
-
+               Asyc_MOdal(countryname,'')
            })
         })
 })
 }
-// .then(el=>{
- 
-//         countries.forEach(element=>{
 
-//            element.addEventListener('click', e=>{
-//                let country = e.target.closest('.countries')
-
-//             //    guard clause
-//             if(!country) return;
-                    
-//                let countryname = country.children[1].children[0].textContent
-
-
-//                data.then(
-
-        
-//                 data=>{ data.filter((cntry,i,arr)=>{    
-                    
-//                 let cnt = cntry.name.common === countryname
-                
-              
-
-//                    })
-
-//                    })  
-                             
-//            })
-//         })
-       
-
-// }).
 
 // catch(err=>{
 // print(err)
@@ -335,43 +350,14 @@ return data
 
 
 
-// Search for any Country 
-    // let countries = document.querySelectorAll('.countries');
 
 const search_Country=(search_Input)=>{
 
-     
-
-        if(search_Input !==''){
-const SearchApis = (async () => {
-
-            try {
-                const res = await fetch(`https://restcountries.com/v2/name/${search_Input}`);
-                const data = await res.json();
-               
-                return data
-
-            }
-            catch (error) {
-                print(error + 'country not found')
-            }
-
-            SearchApis.then(cntry=>{
-                modal_dom(cntry);
-            })
-
-        })();
-
-            SearchApis.then(country_Response => {
-                print(country_Response)
-                let Continent = country_Response.map(countryDiv)
-                List_of_country.innerHTML = Continent;
-            })
-        }
-
-
+   print(search_Input)
+    Asyc_MOdal('', search_Input)
 
     }
+
 
      searchIcon.addEventListener('click',()=>{
       
@@ -386,7 +372,7 @@ const SearchApis = (async () => {
         if (event.keyCode === 13 || event.which === 13) {
           
             if (searchInput.value !== '') {
-          search_Country(searchInput.value)
+          search_Country(searchInput.value,'')
                
             }
            
